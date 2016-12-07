@@ -1,0 +1,21 @@
+#!/usr/bin/expect -f
+set user weggeand
+array set hosts {
+	0 condor	
+	1 rabe
+	2 star
+	3 adler
+}
+set host2 .informatik.hu-berlin.de
+set x [lindex $argv 0]
+set ip [lindex $argv 1]
+
+spawn ssh $user@$hosts([expr $x % 4])$host2
+set timeout -1
+expect "$ "
+send "cd Bachelor/PipeSci\r"
+expect "$ "
+send "./Client.sh $ip\r" 
+expect "$ "
+send "exit\r"
+close $spawn_id
