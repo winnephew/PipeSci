@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adag xmlns="http://pegasus.isi.edu/schema/DAX" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pegasus.isi.edu/schema/DAX http://pegasus.isi.edu/schema/dax-3.4.xsd" version="3.4" name="pipeline">
+	<job id="ID0000000" name="java" pipelining="true">
+		<argument>-jar TaskNursery.jar</argument>
+		<argument>--sequence</argument>
+		<argument>-mb 200</argument>
+		<argument>-partsize 1</argument>
+		<argument>-output file1</argument>
+		<uses name="file1" link="output"/>
+	</job>
+	<job id="ID0000001" name="java" pipelining="false">
+		<argument>-jar TaskNursery.jar</argument>
+		<argument>--sequence</argument>
+		<argument>-partsize 1</argument>
+		<argument>-input file1</argument>
+		<argument>-output file2</argument>
+		<uses name="file1" link="input"/>
+		<uses name="file2" link="output"/>
+	</job>
+	<job id="ID0000002" name="java" pipelining="true">
+		<argument>-jar TaskNursery.jar</argument>
+		<argument>--sequence</argument>
+		<argument>-partsize 1</argument>
+		<argument>-partdelay 5</argument>
+		<argument>-input file2</argument>
+		<argument>-output file3</argument>
+		<uses name="file2" link="input"/>
+		<uses name="file3" link="output"/>
+	</job>
+	<job id="ID0000003" name="java" pipelining="false">
+		<argument>-jar TaskNursery.jar</argument>
+		<argument>--sequence</argument>
+		<argument>-partsize 1</argument>
+		<argument>-input file3</argument>
+		<argument>-output file4</argument>
+		<uses name="file3" link="input"/>
+		<uses name="file4" link="output"/>
+	</job>
+	<job id="ID0000004" name="java" pipelining="true">
+		<argument>-jar TaskNursery.jar</argument>
+		<argument>--sequence</argument>
+		<argument>-partsize 1</argument>
+		<argument>-input file4</argument>
+		<argument>-output file5</argument>
+		<uses name="file4" link="input"/>
+		<uses name="file5" link="output"/>
+	</job>
+	<job id="ID0000005" name="java" pipelining="false">
+		<argument>-jar TaskNursery.jar</argument>
+		<argument>--sequence</argument>
+		<argument>-partsize 1</argument>
+		<argument>-input file5</argument>
+		<argument>-output file6</argument>
+		<uses name="file5" link="input"/>
+		<uses name="file6" link="output"/>
+	</job>
+	<job id="ID0000006" name="java" pipelining="false">
+		<argument>-jar TaskNursery.jar</argument>
+		<argument>--sequence</argument>
+		<argument>-partsize 1</argument>
+		<argument>-input file6</argument>
+		<argument>-output file7</argument>
+		<uses name="file6" link="input"/>
+		<uses name="file7" link="output"/>
+	</job>
+	
+	<job id="ID0000007" name="java" pipelining="false">
+		<argument>-jar TaskNursery.jar</argument>
+		<argument>--sequence</argument>
+		<argument>-partsize 1</argument>
+		<argument>-input file7</argument>
+		<argument>-output file8</argument>
+		<uses name="file7" link="input"/>
+		<uses name="file8" link="output"/>
+	</job>
+	
+	<job id="ID0000008" name="java" pipelining="false">
+		<argument>-jar TaskNursery.jar</argument>
+		<argument>--sequence</argument>
+		<argument>-partsize 1</argument>
+		<argument>-input file8</argument>
+		<argument>-output file9</argument>
+		<uses name="file8" link="input"/>
+		<uses name="file9" link="output"/>
+	</job>
+	
+	<job id="ID0000009" name="java" pipelining="false">
+		<argument>-jar TaskNursery.jar</argument>
+		<argument>--sequence</argument>
+		<argument>-partsize 1</argument>
+		<argument>-input file9</argument>
+		<argument>-output file10</argument>
+		<uses name="file9" link="input"/>
+		<uses name="file10" link="output" transfer="true"/>
+	</job>
+	
+
+	
+	
+	<child ref="ID0000001">
+		<parent ref="ID0000000"/>
+	</child>
+	<child ref="ID0000002">
+		<parent ref="ID0000001"/>
+	</child>
+	<child ref="ID0000003">
+		<parent ref="ID0000002"/>
+	</child>
+	<child ref="ID0000004">
+		<parent ref="ID0000003"/>
+	</child>
+	<child ref="ID0000005">
+		<parent ref="ID0000004"/>
+	</child>
+	<child ref="ID0000006">
+		<parent ref="ID0000005"/>
+	</child>
+	<child ref="ID0000007">
+		<parent ref="ID0000006"/>
+	</child>
+	<child ref="ID0000008">
+		<parent ref="ID0000007"/>
+	</child>
+	<child ref="ID0000009">
+		<parent ref="ID0000008"/>
+	</child>
+	<child ref="ID0000010">
+		<parent ref="ID0000009"/>
+	</child>
+	<child ref="ID0000011">
+		<parent ref="ID0000010"/>
+	</child>
+	<child ref="ID0000012">
+		<parent ref="ID0000011"/>
+	</child>
+	<child ref="ID0000013">
+		<parent ref="ID0000012"/>
+	</child>
+	<child ref="ID0000014">
+		<parent ref="ID0000013"/>
+	</child>								
+</adag>
