@@ -1,0 +1,3 @@
+worker --ip 192.168.178.39
+
+manager --xml /currentTask/workflow.xml
